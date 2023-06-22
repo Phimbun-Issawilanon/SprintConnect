@@ -1,0 +1,53 @@
+
+<div class="row m-5">
+  <div class="col-12 mb-3"><a href="javascript: history.back()" class="btn btn-outline-secondary">Back</a></div>
+  <div class="col-12">
+    <h4>{{(!ownerId ? 'Create' : 'Update')}} Owner</h4>
+  </div>
+  <div class="col-12 mt-3">
+    <form [formGroup]="ownerForm" (ngSubmit)="saveOwner()">
+      <div class="card p-3">
+        <div class="row">
+          <div class="col-12 text-center my-3">
+            <img [src]="(ownerDetails.ownerImage ? ownerDetails.ownerImage : (imageSrc ? imageSrc : exampleImageProfile))"
+            class="img-profile" (click)="getImage('inputOwnerImage')">
+            <br><small class="text-danger">รูปที่อัพโหลดเฉพาะ png/jpg/jpeg ขนาดไม่เกิน 2 mb</small>
+            <input type="file" style="display: none;" id="inputOwnerImage"
+            accept="image/png, image/jpeg, image/jpeg"
+            (change)="readImageURL($event)">
+          </div>
+          <div class="col-12">
+            <label class="form-label">Owner Id</label>
+            <input type="text" class="form-control mb-2" id="ownerId" name="ownerId" formControlName="ownerId" [readonly]="ownerId"
+            [ngClass]="{ 'is-invalid': submitted && fOwner['ownerId'].errors }">
+            <label class="form-label">Owner Name</label>
+            <input type="text" class="form-control mb-2" id="ownerName" name="ownerName" formControlName="ownerName"
+            [ngClass]="{ 'is-invalid': submitted && fOwner['ownerName'].errors }">
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-control mb-2" id="phoneNo" name="phoneNo" formControlName="phoneNo"
+            [ngClass]="{ 'is-invalid': submitted && fOwner['phoneNo'].errors }">
+            <label class="form-label">Address</label>
+            <textarea type="text" class="form-control mb-2" id="address" name="address" formControlName="address"
+            [ngClass]="{ 'is-invalid': submitted && fOwner['address'].errors }" rows="5"></textarea>
+            <label class="form-label">Modules:
+              <small *ngIf="submitted && fOwner['licenseModule'].errors" class="text-danger">require</small>
+            </label>
+            <div class="form-check mb-3" *ngFor="let m of menu; index as i">
+              <input class="form-check-input" type="checkbox" value="{{m.menuId}}" [id]="'module'+m.menuId"
+              (change)="onCheckMenus($event, 'module'+m.menuId)">
+              <label class="form-check-label" [for]="'module'+m.menuId">
+                {{m.menuName}}
+              </label>
+            </div>
+          </div>
+          <div class="col-12 mt-3">
+            <button type="submit" id="ownerFormBtn" class="btn btn-primary">{{(!ownerId ? 'Create' : 'Update')}}</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+    

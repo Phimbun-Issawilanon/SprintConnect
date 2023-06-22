@@ -1,0 +1,16 @@
+
+<div class="row m-5">
+  <div class="col-12">
+    <div class="card p-3">
+      <h4>User Management</h4>
+      <app-filter [searchModel]="userSearchModel" (filterEvent)="getFilters($event)"></app-filter>
+      <a class="btn btn-success ms-auto mb-2" routerLink="/auth/user-form">Create</a>
+      <app-table [dataColumn]="userTableCol" [dataRow]="users" [searchModel]="userSearchModel" (tableEvent)="getDataEmit($event)"></app-table>
+      <app-pagination [searchModel]="userSearchModel" (paginationEvent)="getUsers()"></app-pagination>
+    </div>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+<app-dialog [dialogDetail]="dialogDetails" (dialogEvent)="manageUserById()"></app-dialog>
+  

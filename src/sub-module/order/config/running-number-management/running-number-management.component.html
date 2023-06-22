@@ -1,0 +1,13 @@
+
+<div class="row m-5">
+  <div class="col-12">
+    <div class="card p-3">
+      <h4>Running Number Management</h4>
+      <app-filter [searchModel]="runningNumberSearchModel" (filterEvent)="getFilters($event)"></app-filter>
+      <app-table [dataColumn]="runningNumberTableCol" [dataRow]="runningNumbers" [searchModel]="runningNumberSearchModel" (tableEvent)="getDataEmit($event)"></app-table>
+      <app-pagination [searchModel]="runningNumberSearchModel" (paginationEvent)="getSysRunningNumbers()"></app-pagination>
+    </div>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>

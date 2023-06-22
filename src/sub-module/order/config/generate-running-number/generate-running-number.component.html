@@ -1,0 +1,42 @@
+
+<div class="row m-5">
+  <div class="col-12 mb-3">
+    <h4>Generate Barcode</h4>
+  </div>
+  <div class="col-md-6 col-12">
+    <form [formGroup]="generateBarcodeForm" (ngSubmit)="generateBarcode()">
+      <div class="card p-3">
+        <div class="row">
+          <div class="col-12">
+            <label class="form-label">RunningNumberTypeCode</label>
+            <select class="form-select mb-2" id="runningNumberTypeCode" name="runningNumberTypeCode" formControlName="runningNumberTypeCode"
+            [ngClass]="{ 'is-invalid': submitted && fGenerateBarcode['runningNumberTypeCode'].errors }">
+              <option [value]="null">-- เลือก Type --</option>
+              <option *ngFor="let type of runningNumberTypes" value="{{type.runningNumberTypeCode}}">{{type.runningNumberTypeCode}}</option>
+            </select>
+            <label class="form-label">NumberOfDocument</label>
+            <input type="number" class="form-control mb-2" id="numberOfDocument" name="numberOfDocument" formControlName="numberOfDocument"
+            [ngClass]="{ 'is-invalid': submitted && fGenerateBarcode['numberOfDocument'].errors }">
+            <label class="form-label">OptionalCurrentDateTime</label>
+            <input type="datetime-local" class="form-control mb-2" id="optionalCurrentDateTime" name="optionalCurrentDateTime" formControlName="optionalCurrentDateTime"
+            [ngClass]="{ 'is-invalid': submitted && fGenerateBarcode['optionalCurrentDateTime'].errors }">
+          </div>
+          <div class="col-12 mt-3">
+            <button type="submit" id="generateBarcodeFormBtn" class="btn btn-primary">Generate</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-6 col-12">
+    <div class="card p-3 text-center">
+      <p class="mb-0" *ngIf="barcodes.length <= 0">No Data</p>
+      <ng-container *ngIf="barcodes.length > 0">
+        <ngx-barcode6 *ngFor="let barcode of barcodes" [bc-format]="'CODE128'" [bc-value]="barcode" [bc-display-value]="true"></ngx-barcode6>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+        

@@ -1,0 +1,71 @@
+<div class="row">
+  <!-- display table -->
+  <div class="col-md-9 col-12">
+    <div class="table-overflow">
+      <table class="table mt-3">
+        <thead>
+          <tr>
+            <th *ngFor="let item of dataColumn.column">{{(!item.hide ? item.headerName : null)}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="dataRow.length <= 0"><td colspan="9" class="text-center">No data</td></tr>
+        </tbody>
+        <tbody *ngIf="dataRow.length > 0">
+          <tr *ngFor="let item of dataRow; index as i">
+            <td *ngFor="let col of dataColumn.column; index as j"
+            [ngClass]="{
+              'w-manage-table': col.field === 'manage',
+              'w-text-table': (item[dataColumn.column[j].field] ? (item[dataColumn.column[j].field].length > 100 ? true : false) : false)
+            }">
+              <!-- display col -->
+              <ng-container *ngIf="!col.hide">
+                <!-- index -->
+                <ng-container *ngIf="col.field === 'index'">{{getIndex(i)}}</ng-container>
+                <!-- others field -->
+                <ng-container>{{item[dataColumn.column[j].field]}}</ng-container>
+                <!-- active: online, offline -->
+                <ng-container *ngIf="col.field === 'status'">
+                  <p [ngClass]="{'text-success': item.isActive, 'text-danger': !item.isActive}">{{(item.isActive ? 'Online' : 'Offline')}}</p>
+                </ng-container>
+                <!-- view btn -->
+                <ng-container *ngIf="col.field === 'view'">
+                  <button class="btn btn-outline-warning me-2" id="viewTableBtn" (click)="actionBack(item, 'view')">
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                </ng-container>
+                <!-- manage btn -->
+                <ng-container *ngIf="col.field === 'manage'">
+                  <button class="btn btn-outline-warning me-2" id="updateTableBtn" (click)="actionBack(item, 'update')" *ngIf="item.isActive">
+                    <i class="fa-solid fa-pen"></i>
+                  </button>
+                  <button type="button" id="delTableBtn" class="btn btn-danger me-2" (click)="actionBack(item, 'delete')" *ngIf="item.isActive">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                  <button type="button" id="activeTableBtn" class="btn btn-outline-success me-2" (click)="actionBack(item, 'active')" *ngIf="!item.isActive">
+                    <i class="fa-solid fa-circle-check"></i>
+                  </button>
+                </ng-container>
+              </ng-container>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!-- display and swap column of table -->
+  <div class="col-md-3 col-12">
+    <ul class="list-group" cdkDropList (cdkDropListDropped)="drop($event)">
+      <ng-container *ngFor="let item of dataColumn.columnDisplay; index as i">
+        <li class="list-group-item border pointer" *ngIf="!item.hide" cdkDrag>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" checked [id]="'check'+item.field"(change)="toggleDisplay(item.field)">
+            <label class="form-check-label" [for]="'check'+item.field">
+              {{item.headerName}}
+            </label>
+          </div>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+</div>

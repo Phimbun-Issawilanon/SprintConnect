@@ -1,0 +1,26 @@
+
+<div class="shadow-sm bg-white" id="sidebar-wrapper">
+  <div class="sidebar-heading text-center mb-3">
+    <img [src]="logoImage" class="logo-sidebar">
+  </div>
+  <div class="list-group list-group-flush" *ngFor="let m of menu; index as i">
+    <a *ngIf="!m.path && permission[i]" class="list-group-item-action list-group-item-light collapse-icon px-4 py-3"
+    data-bs-toggle="collapse" [href]="'#menu'+m.menuId" role="button" aria-expanded="false">
+      <i [class]="m.menuIcon" class="me-2"></i>{{m.menuName}}
+    </a>
+    <ul *ngIf="!m.path && permission[i]" class="collapse list-group pt-3" [id]="'menu'+m.menuId">
+      <ng-container *ngFor="let s of m.subMenu; index as j">
+        <!-- 1-2 menu is owner mangement => only system admin (role id of system admin is 4) can access -->
+        <!-- first condition for user as owner and user under owner -->
+        <!-- second condition for system admin -->
+        <li *ngIf="(userProfile.role[0].roleId !== 4 && m.menuId+'-'+s.subMenuId !== '1-2' && permission[i][j]) ||
+        (userProfile.role[0].roleId === 4 && permission[i][j])">
+          <a class="list-group-item ps-5 py-3" [routerLink]="s.path" [id]="m.menuId+'-'+s.subMenuId">{{s.subMenuName}}</a>
+        </li>
+      </ng-container>
+    </ul>
+    <a *ngIf="m.path && permission[i]" class="list-group-item-action list-group-item-light px-4 py-3" [routerLink]="m.path">
+      <i [class]="m.menuIcon" class="me-2"></i>{{m.menuName}}
+    </a>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col-md-6 col-12">
+    <img [src]="(imgRegister ? imgRegister : exampleImage)" class="img-login">
+  </div>
+  <div class="col-md-6 col-12">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+      <div class="login-section mx-auto my-5">
+        <h1>Sign Up</h1>
+        <h3 class="mb-5">Enter details to create your account</h3>
+        <label class="form-label">Firstname<small class="text-danger">*</small></label>
+        <input type="text" class="form-control mb-2" id="firstname" name="firstname" formControlName="firstname"
+        [ngClass]="{ 'is-invalid': submitted && fRegister['firstname'].errors }">
+        <label class="form-label">Lastname<small class="text-danger">*</small></label>
+        <input type="text" class="form-control mb-2" id="lastname" name="lastname" formControlName="lastname"
+        [ngClass]="{ 'is-invalid': submitted && fRegister['lastname'].errors }">
+        <label class="form-label">Email<small class="text-danger">*</small></label>
+        <input type="email" class="form-control mb-2" id="email" name="email" formControlName="email"
+        [ngClass]="{ 'is-invalid': submitted && fRegister['email'].errors }">
+        <label class="form-label">Password<small class="text-danger">*</small>: 
+          <small class="text-danger">{{passwordPattern}}</small>
+        </label>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" id="password" name="password" formControlName="password"
+          [ngClass]="{ 'is-invalid': submitted && fRegister['password'].errors }">
+          <span class="input-group-text" (click)="getEyeClass('password')"><i [class]="eyeToggle"></i></span>
+        </div>
+        <label class="form-label">Confirm Password<small class="text-danger">*</small></label>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword"
+          [ngClass]="{ 'is-invalid': submitted && fRegister['confirmPassword'].errors }">
+          <span class="input-group-text" (click)="getEyeClass('confirmPassword')"><i [class]="eyeToggleCon"></i></span>
+        </div>
+        <p>Already Registered? <a routerLink="/auth/login">Login</a></p>
+        <button type="submit" id="registerBtn" class="btn btn-primary w-100 mt-5">Register</button>
+        <div class="row my-2">
+          <div class="col-5"><div class="border-bottom my-3"></div></div>
+          <div class="col-2 text-center">OR</div>
+          <div class="col-5"><div class="border-bottom my-3"></div></div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <button type="button" id="googleBtn" class="btn-google-login"></button>
+            <button type="button" id="facebookBtn" class="btn-icon-login" (click)="facebookLogin()"><i class="fa-brands fa-facebook"></i></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+  

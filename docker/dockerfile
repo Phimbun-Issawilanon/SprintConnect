@@ -1,0 +1,13 @@
+
+# Stage 1 - build to docker
+FROM node AS build
+WORKDIR /usr/src/app
+COPY . .
+RUN npm install -g npm
+RUN npm install
+RUN npm install -g @angular/cli
+RUN ng build --configuration produnction
+# Stage 2 - move to nginx
+FROM nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=build /usr/src/app/dist/sprint-connect /usr/share/nginx/html

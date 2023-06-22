@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-6 col-12">
+    <img [src]="(imgLogin ? imgLogin : exampleImage)" class="img-login">
+  </div>
+  <div class="col-md-6 col-12">
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <div class="login-section mx-auto my-5">
+        <h1>Welcome to SprintConnect</h1>
+        <h3>Need an account? <a routerLink="/auth/register">Sign Up</a></h3>
+        <h1 class="mt-5">Sign in</h1>
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control mb-2" id="username" name="username" formControlName="username"
+        [ngClass]="{ 'is-invalid': submitted && fLogin['username'].errors }">
+        <label class="form-label">Password</label>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" id="password" name="password" formControlName="password"
+          [ngClass]="{ 'is-invalid': submitted && fLogin['password'].errors }">
+          <span class="input-group-text" (click)="getEyeClass('password')"><i [class]="eyeToggle"></i></span>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="remember" name="remember" formControlName="remember">
+              <label class="form-check-label" for="remember">Remember me</label>
+            </div>
+          </div>
+          <div class="col-6 text-end"><a routerLink="/auth/reset-password">Forgot Password?</a></div>
+        </div>
+        <button type="submit" id="loginBtn" class="btn btn-primary w-100 mt-5">Login</button>
+        <div class="row mt-3 mb-2">
+          <div class="col-5"><div class="border-bottom my-3"></div></div>
+          <div class="col-2 text-center">OR</div>
+          <div class="col-5"><div class="border-bottom my-3"></div></div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-center">
+            <button type="button" id="googleBtn" class="btn-google-login"></button>
+            <button type="button" id="facebookBtn" class="btn-icon-login" (click)="facebookLogin()"><i class="fa-brands fa-facebook"></i></button>
+          </div>
+        </div>
+      </div> 
+    </form>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>

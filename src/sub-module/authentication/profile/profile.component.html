@@ -1,0 +1,84 @@
+
+<div class="row m-5">
+  <div class="col-12">
+    <h4>Profile</h4>
+  </div>
+  <div class="col-md-6 col-12">
+    <form [formGroup]="userProfileForm" (ngSubmit)="updateUserProfile()">
+      <div class="card p-3">
+        <div class="row">
+          <div class="col-12 text-center my-3">
+            <img [src]="(
+              (imageSrc ? imageSrc :
+                userProfile.profileImage ?
+                userProfile.profileImage :
+                exampleImageProfile
+              )
+            )" class="img-profile" (click)="getImage('inputProfileImage')">
+            <br><small class="text-danger">รูปที่อัพโหลดเฉพาะ png/jpg/jpeg ขนาดไม่เกิน 2 mb</small>
+            <input type="file" style="display: none;" id="inputProfileImage"
+            accept="image/png, image/jpeg, image/jpeg"
+            (change)="readImageURL($event)">
+          </div>
+          <div class="col-12 text-center"><h4>{{userProfile.firstName}} {{userProfile.lastName}}</h4></div>
+          <div class="col-12">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control mb-2" id="firstname" name="firstname" formControlName="firstname"
+            [ngClass]="{ 'is-invalid': submittedUserProfile && fUserProfile['firstname'].errors }">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control mb-2" id="lastname" name="lastname" formControlName="lastname"
+            [ngClass]="{ 'is-invalid': submittedUserProfile && fUserProfile['lastname'].errors }">
+            <label class="form-label">Email</label>
+            <input type="text" class="form-control mb-2" id="email" name="email" formControlName="email" readonly
+            [ngClass]="{ 'is-invalid': submittedUserProfile && fUserProfile['email'].errors }">
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-control mb-2" id="phoneNo" name="phoneNo" formControlName="phoneNo"
+            [ngClass]="{ 'is-invalid': submittedUserProfile && fUserProfile['phoneNo'].errors }">
+            <label class="form-label">Date of Birth</label>
+            <input type="date" class="form-control mb-2" id="dob" name="dob" formControlName="dob"
+            [ngClass]="{ 'is-invalid': submittedUserProfile && fUserProfile['dob'].errors }">
+          </div>
+          <div class="col-12 mt-3">
+            <button type="submit" id="profileUpdateBtn" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-6 col-12">
+    <form [formGroup]="changePasswordForm" (ngSubmit)="changePassword()">
+      <div class="card p-3">
+        <div class="row">
+          <div class="col-12"><h3>Change Password</h3></div>
+          <div class="col-12">
+            <label class="form-label">Old Password</label>
+            <div class="input-group mb-3">
+              <input type="password" class="form-control" id="oldPassword" name="oldPassword" formControlName="oldPassword"
+              [ngClass]="{ 'is-invalid': submittedChangePassword && fChangePassword['oldPassword'].errors }">
+              <span class="input-group-text" (click)="getEyeClass('oldPassword')"><i [class]="eyeToggleOld"></i></span>
+            </div>
+            <label class="form-label">New Password:
+              <small class="text-danger">{{passwordPattern}}</small>
+            </label>
+            <div class="input-group mb-3">
+              <input type="password" class="form-control" id="newPassword" name="newPassword" formControlName="newPassword"
+              [ngClass]="{ 'is-invalid': submittedChangePassword && fChangePassword['newPassword'].errors }">
+              <span class="input-group-text" (click)="getEyeClass('newPassword')"><i [class]="eyeToggleNew"></i></span>
+            </div>
+            <label class="form-label">Confirm New Password</label>
+            <div class="input-group mb-3">
+              <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" formControlName="confirmNewPassword"
+              [ngClass]="{ 'is-invalid': submittedChangePassword && fChangePassword['confirmNewPassword'].errors }">
+              <span class="input-group-text" (click)="getEyeClass('confirmNewPassword')"><i [class]="eyeToggleCon"></i></span>
+            </div>
+          </div>
+          <div class="col-12 mt-3">
+            <button type="submit" id="changePasswordUpdateBtn" class="btn btn-primary">Update</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>

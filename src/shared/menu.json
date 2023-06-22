@@ -1,0 +1,151 @@
+{
+  "menu": [
+    {
+      "menuId": 1,
+      "menuName": "Authentication",
+      "menuIcon": "fa-solid fa-shield-halved",
+      "subMenu": [
+        {
+          "subMenuId": 1,
+          "subMenuName": "User Management",
+          "path": "/auth/user-management"
+        },
+        {
+          "subMenuId": 2,
+          "subMenuName": "Owner Management",
+          "path": "/auth/owner-management"
+        },
+        {
+          "subMenuId": 3,
+          "subMenuName": "Role Management",
+          "path": "/auth/role-management"
+        },
+        {
+          "subMenuId": 4,
+          "subMenuName": "Profile",
+          "path": "/auth/profile"
+        }
+      ]
+    },
+    {
+      "menuId": 2,
+      "menuName": "Setting",
+      "menuIcon": "fa-solid fa-gear",
+      "path": "/setting"
+    },
+    {
+      "menuId": 3,
+      "menuName": "Order Configuration",
+      "menuIcon": "fa-solid fa-gears",
+      "subMenu": [
+        {
+          "subMenuId": 1,
+          "subMenuName": "Channel Management",
+          "path": "/order/config/channel-management"
+        },
+        {
+          "subMenuId": 2,
+          "subMenuName": "Delivery Sub Type Management",
+          "path": "/order/config/delivery-subtype-management"
+        },
+        {
+          "subMenuId": 3,
+          "subMenuName": "Delivery Type Management",
+          "path": "/order/config/delivery-type-management"
+        },
+        {
+          "subMenuId": 4,
+          "subMenuName": "Function Config Management",
+          "path": "/order/config/function-config-management"
+        },
+        {
+          "subMenuId": 5,
+          "subMenuName": "Fulfillment Option Management",
+          "path": "/order/config/fulfillment-option-management"
+        },
+        {
+          "subMenuId": 6,
+          "subMenuName": "Fulfillment Priority Management",
+          "path": "/order/config/fulfillment-priority-management"
+        },
+        {
+          "subMenuId": 7,
+          "subMenuName": "Fulfillment Type Management",
+          "path": "/order/config/fulfillment-type-management"
+        },
+        {
+          "subMenuId": 8,
+          "subMenuName": "Order Fulfillment Type Management",
+          "path": "/order/config/order-fulfillment-type-management"
+        },
+        {
+          "subMenuId": 9,
+          "subMenuName": "Order Type Management",
+          "path": "/order/config/order-type-management"
+        },
+        {
+          "subMenuId": 10,
+          "subMenuName": "Generate Running Number",
+          "path": "/order/config/generate-running-number"
+        },
+        {
+          "subMenuId": 11,
+          "subMenuName": "Running Number Management",
+          "path": "/order/config/running-number-management"
+        },
+        {
+          "subMenuId": 12,
+          "subMenuName": "Running Number Type Management",
+          "path": "/order/config/running-number-type-management"
+        },
+        {
+          "subMenuId": 13,
+          "subMenuName": "Status Management",
+          "path": "/order/config/status-management"
+        }
+      ]
+    },
+    {
+      "menuId": 4,
+      "menuName": "Dashboard",
+      "menuIcon": "fa-solid fa-chart-line",
+      "path": "/dashboard"
+    },
+    {
+      "menuId": 5,
+      "menuName": "Store Management",
+      "menuIcon": "fa-solid fa-store",
+      "path": "/order/store-management"
+    },
+    {
+      "menuId": 6,
+      "menuName": "Company Management",
+      "menuIcon": "fa-solid fa-building",
+      "path": "/order/company-management"
+    },
+    {
+      "menuId": 7,
+      "menuName": "Master Design",
+      "menuIcon": "fa-solid fa-palette",
+      "path": "/master-design"
+    },
+    {
+      "menuId": 8,
+      "menuName": "Menu8",
+      "menuIcon": "",
+      "subMenu": [
+        {
+          "subMenuId": 1,
+          "subMenuName": "Menu81",
+          "path": "/temp/menu81"
+        }
+      ]
+    },
+    {
+      "menuId": 9,
+      "menuName": "Menu9",
+      "menuIcon": "",
+      "path": "/temp/menu9"
+    }
+  ]
+}

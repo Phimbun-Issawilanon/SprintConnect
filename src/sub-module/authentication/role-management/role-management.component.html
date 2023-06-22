@@ -1,0 +1,15 @@
+
+<div class="row m-5">
+  <div class="col-12">
+    <div class="card p-3">
+      <h4>Role Management</h4>
+      <app-filter [searchModel]="roleSearchModel" (filterEvent)="getFilters($event)"></app-filter>
+      <a class="btn btn-success ms-auto mb-2" routerLink="/auth/role-form">Create</a>
+      <app-table [dataColumn]="roleTableCol" [dataRow]="roles" [searchModel]="roleSearchModel" (tableEvent)="getDataEmit($event)"></app-table>
+      <app-pagination [searchModel]="roleSearchModel" (paginationEvent)="getRoles()"></app-pagination>
+    </div>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+<app-dialog [dialogDetail]="dialogDetails" (dialogEvent)="manageRoleById()"></app-dialog>

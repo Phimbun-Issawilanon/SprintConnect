@@ -1,0 +1,15 @@
+
+<div class="row m-5">
+  <div class="col-12">
+    <div class="card p-3">
+      <h4>Delivery Type Management</h4>
+      <app-filter [searchModel]="deliveryTypeSearchModel" (filterEvent)="getFilters($event)"></app-filter>
+      <a class="btn btn-success ms-auto mb-2" routerLink="/order/config/delivery-type-form">Create</a>
+      <app-table [dataColumn]="deliveryTypeTableCol" [dataRow]="deliveryTypes" [searchModel]="deliveryTypeSearchModel" (tableEvent)="getDataEmit($event)"></app-table>
+      <app-pagination [searchModel]="deliveryTypeSearchModel" (paginationEvent)="getSysDeliveryTypes()"></app-pagination>
+    </div>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+<app-dialog [dialogDetail]="dialogDetails" (dialogEvent)="manageSysDeliveryTypeById()"></app-dialog>

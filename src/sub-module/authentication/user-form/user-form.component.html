@@ -1,0 +1,80 @@
+
+<div class="row m-5">
+  <div class="col-12 mb-3"><a href="javascript: history.back()" class="btn btn-outline-secondary">Back</a></div>
+  <div class="col-12">
+    <h4>{{(!userId ? 'Create' : 'Update')}} User</h4>
+  </div>
+  <div class="col-12 mt-4">
+    <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+      <div class="card p-3">
+        <div class="row">
+          <div class="col-12 text-center my-3">
+            <img [src]="(userDetails.profileImage ? userDetails.profileImage : (imageSrc ? imageSrc : exampleImageProfile))"
+            class="img-profile" (click)="getImage('inputProfileImage')">
+            <br><small class="text-danger">รูปที่อัพโหลดเฉพาะ png/jpg/jpeg ขนาดไม่เกิน 2 mb</small>
+            <input type="file" style="display: none;" id="inputProfileImage"
+            accept="image/png, image/jpeg, image/jpeg"
+            (change)="readImageURL($event)">
+          </div>
+          <div class="col-12">
+            <label class="form-label">User Code: 
+              <small *ngIf="submitted && fUser['userCode'].errors" class="text-danger">Must be letter or number maximum 15 charactor</small>
+            </label>
+            <input type="text" class="form-control mb-2" id="userCode" name="userCode" formControlName="userCode"
+            [ngClass]="{ 'is-invalid': submitted && fUser['userCode'].errors }">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control mb-2" id="firstName" name="firstName" formControlName="firstName"
+            [ngClass]="{ 'is-invalid': submitted && fUser['firstName'].errors }">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control mb-2" id="lastName" name="lastName" formControlName="lastName"
+            [ngClass]="{ 'is-invalid': submitted && fUser['lastName'].errors }">
+            <label class="form-label">Email</label>
+            <input type="text" class="form-control mb-2" id="email" name="email" formControlName="email" [readonly]="userId"
+            [ngClass]="{ 'is-invalid': submitted && fUser['email'].errors }">
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-control mb-2" id="phoneNo" name="phoneNo" formControlName="phoneNo"
+            [ngClass]="{ 'is-invalid': submitted && fUser['phoneNo'].errors }">
+            <label class="form-label">Date of Birth</label>
+            <input type="date" class="form-control mb-2" id="dob" name="dob" formControlName="dob"
+            [ngClass]="{ 'is-invalid': submitted && fUser['dob'].errors }">
+            <label class="form-label" *ngIf="!userId">Password</label>
+            <div class="input-group mb-3" *ngIf="!userId">
+              <input type="text" class="form-control" id="password" name="password" formControlName="password" readonly
+              [ngClass]="{ 'is-invalid': submitted && fUser['password'].errors }">
+              <span class="input-group-text" (click)="generatePassword()" id="generatePassword"><i class="fa-solid fa-key"></i></span>
+            </div>
+            <label class="form-label" *ngIf="userId && userProfile.role[0].roleId === 4">Owner:</label>
+            <input type="text" class="form-control mb-2" id="ownerName" name="ownerName" formControlName="ownerName" readonly
+            *ngIf="userId && userProfile.role[0].roleId === 4">
+            <select class="form-select mb-3" id="ownerId" name="ownerId" formControlName="ownerId"
+            [ngClass]="{ 'is-invalid': submitted && fUser['ownerId'].errors }"
+            *ngIf="!userId && userProfile.role[0].roleId === 4">
+              <option [value]="null">-- เลือก owner --</option>
+              <ng-container *ngFor="let owner of owners">
+                <option *ngIf="owner.isActive" value="{{owner.ownerId}}">{{owner.ownerName}}</option>
+              </ng-container>
+            </select>
+            <label class="form-label">Role:
+              <small *ngIf="submitted && fUser['roles'].errors" class="text-danger">require</small>
+            </label>
+            <ng-container *ngFor="let role of roles; index as i">
+              <div class="form-check mb-3" *ngIf="role.isActive">
+                <input class="form-check-input" type="checkbox" value="{{role.roleId}}" [id]="'role'+role.roleId"
+                (change)="onCheckRoles($event, 'role'+role.roleId)">
+                <label class="form-check-label" [for]="'role'+role.roleId">
+                  {{role.roleName}}
+                </label>
+              </div>
+            </ng-container>
+          </div>
+          <div class="col-12 mt-3">
+            <button type="submit" id="userFormBtn" class="btn btn-primary">{{(!userId ? 'Create' : 'Update')}}</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+    

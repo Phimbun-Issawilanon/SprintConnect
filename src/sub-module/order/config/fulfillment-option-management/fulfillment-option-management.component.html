@@ -1,0 +1,15 @@
+
+<div class="row m-5">
+  <div class="col-12">
+    <div class="card p-3">
+      <h4>Fulfillment Option Management</h4>
+      <app-filter [searchModel]="fulfillmentOptionSearchModel" (filterEvent)="getFilters($event)"></app-filter>
+      <a class="btn btn-success ms-auto mb-2" routerLink="/order/config/fulfillment-option-form">Create</a>
+      <app-table [dataColumn]="fulfillmentOptionTableCol" [dataRow]="fulfillmentOptions" [searchModel]="fulfillmentOptionSearchModel" (tableEvent)="getDataEmit($event)"></app-table>
+      <app-pagination [searchModel]="fulfillmentOptionSearchModel" (paginationEvent)="getSysFulfillmentOptions()"></app-pagination>
+    </div>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+<app-dialog [dialogDetail]="dialogDetails" (dialogEvent)="manageSysFulfillmentOptionById()"></app-dialog>

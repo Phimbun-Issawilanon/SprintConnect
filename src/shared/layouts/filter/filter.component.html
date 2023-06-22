@@ -1,0 +1,19 @@
+<form [formGroup]="searchFilterForm" (ngSubmit)="searchFilter()">
+  <div class="row mt-4">
+    <div class="col-md-2 col-12">
+      <select class="form-select" id="selectFilter" name="selectFilter" formControlName="selectFilter" (change)="getInputType($event)"
+      [ngClass]="{ 'is-invalid': (submitted && fSearchFilter['selectFilter'].errors) || fSearchFilter['selectFilter'].value === 'null' }">
+        <option [value]="null">-- เลือก filter --</option>
+        <option *ngFor="let filter of searchModel.filter" value="{{filter.value}}">{{filter.text}}</option>
+      </select>
+    </div>
+    <div class="col-md-3 col-12">
+      <input [type]="inputType" class="form-control" id="filterInput" name="filterInput" placeholder="Search..." formControlName="filterInput"
+      [ngClass]="{ 'is-invalid': submitted && fSearchFilter['filterInput'].errors }">
+    </div>
+    <div class="col-md-7 col-12">
+      <button type="submit" id="searchFilterBtn" class="btn btn-info me-2">Search</button>
+      <button type="button" id="clearSearchFilterBtn" class="btn btn-danger" (click)="clearSearch()">Clear Search</button>
+    </div>
+  </div>
+</form>

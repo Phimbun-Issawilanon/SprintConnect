@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fmsweb-service
+  namespace: fms-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fmsweb-service
+  template:
+    metadata:
+      labels:
+        app: fmsweb-service
+    spec:
+      containers:
+      - name: fmsweb-service
+        image: cgacraksnonprd.azurecr.io/fms/sprint-connect-web:1.1.7
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        env:
+          - name: TZ
+            value: Asia/Bangkok
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: 256m
+            memory: 512Mi
+          requests:
+            cpu: 256m
+            memory: 512Mi
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: Nodepool
+                operator: In
+                values:
+                - stateless
+      tolerations:
+      - effect: NoSchedule
+        key: StatelessOnly
+        operator: Equal
+        value: "true"

@@ -1,0 +1,32 @@
+
+<div class="row m-5">
+  <div class="col-12 mb-3"><a href="javascript: history.back()" class="btn btn-outline-secondary">Back</a></div>
+  <div class="col-12">
+    <h4>{{(!fulfillmentPriorityId ? 'Create' : 'Update')}} Fulfillment Priority</h4>
+  </div>
+  <div class="col-12 mt-3">
+    <form [formGroup]="fulfillmentPriorityForm" (ngSubmit)="saveSysFulfillmentPriority()">
+      <div class="card p-3">
+        <div class="row">
+          <div class="col-12">
+            <label class="form-label">Key</label>
+            <input type="text" class="form-control mb-2" id="key" name="key" formControlName="key" [readonly]="fulfillmentPriorityId"
+            [ngClass]="{ 'is-invalid': submitted && fFulfillmentPriority['key'].errors }">
+            <label class="form-label">Value</label>
+            <input type="text" class="form-control mb-2" id="value" name="value" formControlName="value"
+            [ngClass]="{ 'is-invalid': submitted && fFulfillmentPriority['value'].errors }">
+            <label class="form-label">Display Name</label>
+            <input type="text" class="form-control mb-2" id="displayName" name="displayName" formControlName="displayName"
+            [ngClass]="{ 'is-invalid': submitted && fFulfillmentPriority['displayName'].errors }">
+          </div>
+          <div class="col-12 mt-3">
+            <button type="submit" id="fulfillmentPriorityFormBtn" class="btn btn-primary">{{(!fulfillmentPriorityId ? 'Create' : 'Update')}}</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+              

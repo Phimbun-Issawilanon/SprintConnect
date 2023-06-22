@@ -1,0 +1,54 @@
+
+<div class="row m-5">
+  <div class="col-12 mb-3"><a href="javascript: history.back()" class="btn btn-outline-secondary">Back</a></div>
+  <div class="col-12">
+    <h4>{{(!orderTypeId ? 'Create' : 'Update')}} Order Type</h4>
+  </div>
+  <div class="col-12 mt-3">
+    <form [formGroup]="orderTypeForm" (ngSubmit)="saveSysOrderType()">
+      <div class="card p-3">
+        <div class="row">
+          <div class="col-12">
+            <label class="form-label">Order Type</label>
+            <input type="text" class="form-control mb-2" id="orderType" name="orderType" formControlName="orderType"
+            [ngClass]="{ 'is-invalid': submitted && fOrderType['orderType'].errors }">
+            <label class="form-label">Delivery Method Id</label>
+            <input type="text" class="form-control mb-2" id="deliveryMethodId" name="deliveryMethodId" formControlName="deliveryMethodId"
+            [ngClass]="{ 'is-invalid': submitted && fOrderType['deliveryMethodId'].errors }">
+            <label class="form-label">Delivery Method</label>
+            <input type="text" class="form-control mb-2" id="deliveryMethod" name="deliveryMethod" formControlName="deliveryMethod"
+            [ngClass]="{ 'is-invalid': submitted && fOrderType['deliveryMethod'].errors }">
+            <label class="form-label">Order Config</label>
+            <input type="text" class="form-control mb-2" id="orderConfig" name="orderConfig" formControlName="orderConfig"
+            [ngClass]="{ 'is-invalid': submitted && fOrderType['orderConfig'].errors }">
+            <label class="form-label">Description</label>
+            <textarea type="text" class="form-control mb-2" rows="3" id="description" name="description" formControlName="description"
+            [ngClass]="{ 'is-invalid': submitted && fOrderType['description'].errors }"></textarea>
+            <label class="form-label">Delivery Type</label>
+            <select class="form-select mb-2" id="deliveryTypeId" name="deliveryTypeId" formControlName="deliveryTypeId"
+            [ngClass]="{ 'is-invalid': submitted && fOrderType['deliveryTypeId'].errors }">
+              <option [value]="null">-- เลือก Delivery Type --</option>
+              <option *ngFor="let item of deliveryTypes" [value]="item.id">
+                <ng-container *ngIf="item.isActive">{{item.value}}</ng-container>
+              </option>
+            </select>
+            <label class="form-label">Delivery Sub Type</label>
+            <select class="form-select mb-2" id="deliverySubTypeId" name="deliverySubTypeId" formControlName="deliverySubTypeId"
+            [ngClass]="{ 'is-invalid': submitted && fOrderType['deliverySubTypeId'].errors }">
+              <option [value]="null">-- เลือก Delivery Sub Type --</option>
+              <option *ngFor="let item of deliverySubTypes" [value]="item.id">
+                <ng-container *ngIf="item.isActive">{{item.value}}</ng-container>
+              </option>
+            </select>
+          </div>
+          <div class="col-12 mt-3">
+            <button type="submit" id="orderTypeFormBtn" class="btn btn-primary">{{(!orderTypeId ? 'Create' : 'Update')}}</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+                  

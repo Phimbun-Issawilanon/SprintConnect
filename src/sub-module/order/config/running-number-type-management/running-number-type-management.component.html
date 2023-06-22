@@ -1,0 +1,15 @@
+
+<div class="row m-5">
+  <div class="col-12">
+    <div class="card p-3">
+      <h4>Running Number Type Management</h4>
+      <app-filter [searchModel]="runningNumberTypeSearchModel" (filterEvent)="getFilters($event)"></app-filter>
+      <a class="btn btn-success ms-auto mb-2" routerLink="/order/config/running-number-type-form">Create</a>
+      <app-table [dataColumn]="runningNumberTypeTableCol" [dataRow]="runningNumberTypes" [searchModel]="runningNumberTypeSearchModel" (tableEvent)="getDataEmit($event)"></app-table>
+      <app-pagination [searchModel]="runningNumberTypeSearchModel" (paginationEvent)="getSysRunningNumberTypes()"></app-pagination>
+    </div>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+<app-dialog [dialogDetail]="dialogDetails" (dialogEvent)="manageSysRunningNumberTypeById()"></app-dialog>

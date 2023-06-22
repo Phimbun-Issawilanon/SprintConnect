@@ -1,0 +1,15 @@
+
+<div class="row m-5">
+  <div class="col-12">
+    <div class="card p-3">
+      <h4>Fulfillment Type Management</h4>
+      <app-filter [searchModel]="fulfillmentTypeSearchModel" (filterEvent)="getFilters($event)"></app-filter>
+      <a class="btn btn-success ms-auto mb-2" routerLink="/order/config/fulfillment-type-form">Create</a>
+      <app-table [dataColumn]="fulfillmentTypeTableCol" [dataRow]="fulfillmentTypes" [searchModel]="fulfillmentTypeSearchModel" (tableEvent)="getDataEmit($event)"></app-table>
+      <app-pagination [searchModel]="fulfillmentTypeSearchModel" (paginationEvent)="getSysFulfillmentTypes()"></app-pagination>
+    </div>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+<app-dialog [dialogDetail]="dialogDetails" (dialogEvent)="manageSysFulfillmentTypeById()"></app-dialog>

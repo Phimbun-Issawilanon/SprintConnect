@@ -1,0 +1,83 @@
+
+<div class="row m-5">
+  <div class="col-12 mb-3"><a href="javascript: history.back()" class="btn btn-outline-secondary">Back</a></div>
+  <div class="col-12">
+    <h4>{{(!runningNumberTypeId ? 'Create' : 'Update')}} Running Number Type</h4>
+  </div>
+  <div class="col-12 mt-3">
+    <form [formGroup]="runningNumberTypeForm" (ngSubmit)="saveSysRunningNumberType()">
+      <div class="card p-3">
+        <div class="row">
+          <div class="col-12">
+            <label class="form-label">Running Number Type Code</label>
+            <input type="text" class="form-control mb-2" id="runningNumberTypeCode" name="runningNumberTypeCode" formControlName="runningNumberTypeCode"
+            [ngClass]="{ 'is-invalid': submitted && fRunningNumberType['runningNumberTypeCode'].errors }">
+            <label class="form-label">Running Number Type Name</label>
+            <input type="text" class="form-control mb-2" id="runningNumberTypeName" name="runningNumberTypeName" formControlName="runningNumberTypeName"
+            [ngClass]="{ 'is-invalid': submitted && fRunningNumberType['runningNumberTypeName'].errors }">
+            <label class="form-label">Format</label>
+            <ul class="list-group list-group-horizontal mb-2" cdkDropList (cdkDropListDropped)="drop($event, 'format')">
+              <ng-container *ngFor="let item of formatArr; index as i">
+                <li class="list-group-item border pointer" cdkDrag>{{item}}</li>
+              </ng-container>
+            </ul>
+            <label class="form-label">Format Text</label>
+            <input type="text" class="form-control mb-2" id="formatText" name="formatText" formControlName="formatText"
+            [ngClass]="{ 'is-invalid': submitted && fRunningNumberType['formatText'].errors }">
+            <label class="form-label">Format Date</label>
+            <div class="row">
+              <div class="col-6">
+                <label class="form-label">Month: </label>
+                <div class="form-check" *ngFor="let item of monthArr; index as i">
+                  <input class="form-check-input" type="radio" name="monthRadio" [id]="'monthRadio' + (i + 1)" (click)="checkRadio(item, 'month')">
+                  <label class="form-check-label" [for]="'monthRadio' + (i + 1)">{{item}}</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <label class="form-label">Year: </label>
+                <div class="form-check" *ngFor="let item of yearArr; index as i">
+                  <input class="form-check-input" type="radio" name="yearRadio" [id]="'yearRadio' + (i + 1)" (click)="checkRadio(item, 'year')">
+                  <label class="form-check-label" [for]="'yearRadio' + (i + 1)">{{item}}</label>
+                </div>
+              </div>
+            </div>
+            <ul class="list-group list-group-horizontal mb-2" cdkDropList (cdkDropListDropped)="drop($event, 'formatDate')">
+              <ng-container *ngFor="let item of formatDateArr; index as i">
+                <li class="list-group-item border pointer" cdkDrag>{{item}}</li>
+              </ng-container>
+            </ul>
+            <input type="text" class="form-control my-2" id="formatDate" name="formatDate" formControlName="formatDate" readonly
+            [ngClass]="{ 'is-invalid': submitted && fRunningNumberType['formatDate'].errors }">
+            <label class="form-label">Format Number</label>
+            <input type="number" class="form-control mb-2" id="formatNumberDigit" name="formatNumberDigit" formControlName="formatNumberDigit"
+            [ngClass]="{ 'is-invalid': submitted && fRunningNumberType['formatNumberDigit'].errors }" (keyup)="showExample($event)">
+            <label class="form-label">Format Number Example</label>
+            <input type="text" class="form-control mb-2" id="formatNumber" name="formatNumber" formControlName="formatNumber" readonly
+            [ngClass]="{ 'is-invalid': submitted && fRunningNumberType['formatNumber'].errors }">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="isResetByYear" formControlName="isResetByYear"
+              [ngClass]="{ 'is-invalid': submitted && fRunningNumberType['isResetByYear'].errors }">
+              <label class="form-check-label" for="isResetByYear">Reset By Year</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="isResetByMonth" formControlName="isResetByMonth"
+              [ngClass]="{ 'is-invalid': submitted && fRunningNumberType['isResetByMonth'].errors }">
+              <label class="form-check-label" for="isResetByMonth">Reset By Month</label>
+            </div>
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="checkbox" id="isResetByDay" formControlName="isResetByDay"
+              [ngClass]="{ 'is-invalid': submitted && fRunningNumberType['isResetByDay'].errors }">
+              <label class="form-check-label" for="isResetByDay">Reset By Day</label>
+            </div>
+          </div>
+          <div class="col-12 mt-3">
+            <button type="submit" id="runningNumberTypeFormBtn" class="btn btn-primary">{{(!runningNumberTypeId ? 'Create' : 'Update')}}</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+                      

@@ -1,0 +1,22 @@
+
+<div class="row m-5">
+  <div class="col-12 mb-3"><a href="javascript: history.back()" class="btn btn-outline-secondary">Back</a></div>
+  <div class="col-12">
+    <h4>{{(!runningNumberId ? '' : 'View')}} Running Number</h4>
+  </div>
+  <div class="col-12 mt-3">
+    <div class="card p-3">
+      <div class="row">
+        <div class="col-12">
+          <p class="form-label">Create By: {{runningNumberDetails.createdBy}} {{runningNumberDetails.createdDate | date: 'dd/MM/yyyy'}}</p>
+          <p class="form-label">Update By: {{runningNumberDetails.updatedBy}} {{runningNumberDetails.updatedDate | date: 'dd/MM/yyyy'}}</p>
+          <p class="form-label">Running Time: {{runningNumberDetails.runningDay}} {{runningNumberDetails.runningMonth}} {{runningNumberDetails.runningYear}}</p>
+          <p class="form-label">Running Number: {{runningNumberDetails.runningNumber}}</p>
+          <p class="form-label">Running Number Type: {{runningNumberDetails.runningNumberType}}</p>
+          <p class="form-label">Version: {{runningNumberDetails.version}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                        

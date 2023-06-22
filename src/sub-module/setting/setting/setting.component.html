@@ -1,0 +1,40 @@
+
+<div class="row m-5">
+  <div class="col-12">
+    <h4>Setting</h4>
+  </div>
+  <div class="col-12 mt-4">
+    <div class="card p-3">
+      <div class="row">
+        <div class="col-12 mb-2"><h6 class="text-danger">รูปที่อัพโหลดเฉพาะ png/jpg/jpeg ขนาดไม่เกิน 2 mb</h6></div>
+        <div class="col-12 my-3">
+          <h5>Logo on sidebar</h5>
+          <img [src]="(imageLogo.imageSrcLogo ? imageLogo.imageSrcLogo : exampleImage)" class="w-50" (click)="getImage('inputLogoImage')"><br>
+          <input type="file" style="display: none;" id="inputLogoImage" accept="image/png, image/jpeg, image/jpeg" (change)="readImageURL($event)">
+          <button type="button" id="uploadLogoBtn" class="btn btn-primary my-2" (click)="uploadImage('logo')">Upload</button>
+        </div>
+        <div class="col-12 my-3">
+          <h5>Login page</h5>
+          <img [src]="(imageLogin.imageSrcLogin ? imageLogin.imageSrcLogin : exampleImage)" class="w-50" (click)="getImage('inputLoginImage')"><br>
+          <input type="file" style="display: none;" id="inputLoginImage" accept="image/png, image/jpeg, image/jpeg" (change)="readImageURL($event)">
+          <button type="button" id="uploadLoginBtn" class="btn btn-primary my-2" (click)="uploadImage('login')">Upload</button>
+        </div>
+        <div class="col-12 my-3">
+          <h5>Register page</h5>
+          <img [src]="(imageRegister.imageSrcRegister ? imageRegister.imageSrcRegister : exampleImage)" class="w-50" (click)="getImage('inputRegisterImage')"><br>
+          <input type="file" style="display: none;" id="inputRegisterImage" accept="image/png, image/jpeg, image/jpeg" (change)="readImageURL($event)">
+          <button type="button" id="uploadRegisterBtn" class="btn btn-primary my-2" (click)="uploadImage('register')">Upload</button>
+        </div>
+        <div class="col-12 my-3">
+          <h5>Forgot password page</h5>
+          <img [src]="(imageForgotPassword.imageSrcForgotPassword ? imageForgotPassword.imageSrcForgotPassword : exampleImage)" class="w-50" (click)="getImage('inputForgotPasswordImage')"><br>
+          <input type="file" style="display: none;" id="inputForgotPasswordImage" accept="image/png, image/jpeg, image/jpeg" (change)="readImageURL($event)">
+          <button type="button" id="uploadForgotPasswordBtn" class="btn btn-primary my-2" (click)="uploadImage('forgotPassword')">Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+      

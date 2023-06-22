@@ -1,0 +1,35 @@
+
+<div class="row m-5">
+  <div class="col-12 mb-3"><a href="javascript: history.back()" class="btn btn-outline-secondary">Back</a></div>
+  <div class="col-12">
+    <h4>{{(!statusId ? 'Create' : 'Update')}} Status</h4>
+  </div>
+  <div class="col-12 mt-3">
+    <form [formGroup]="statusForm" (ngSubmit)="saveSysStatus()">
+      <div class="card p-3">
+        <div class="row">
+          <div class="col-12">
+            <label class="form-label">Status</label>
+            <input type="text" class="form-control mb-2" id="statusCode" name="statusCode" formControlName="statusCode"
+            [ngClass]="{ 'is-invalid': submitted && fStatus['statusCode'].errors }">
+            <label class="form-label">Status Reason</label>
+            <input type="text" class="form-control mb-2" id="statusReason" name="statusReason" formControlName="statusReason"
+            [ngClass]="{ 'is-invalid': submitted && fStatus['statusReason'].errors }">
+            <label class="form-label">Status DisplayName</label>
+            <input type="text" class="form-control mb-2" id="statusDisplayName" name="statusDisplayName" formControlName="statusDisplayName"
+            [ngClass]="{ 'is-invalid': submitted && fStatus['statusDisplayName'].errors }">
+            <label class="form-label">Status Type</label>
+            <input type="text" class="form-control mb-2" id="statusType" name="statusType" formControlName="statusType"
+            [ngClass]="{ 'is-invalid': submitted && fStatus['statusType'].errors }">
+          </div>
+          <div class="col-12 mt-3">
+            <button type="submit" id="statusFormBtn" class="btn btn-primary">{{(!statusId ? 'Create' : 'Update')}}</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-alert [alertDetail]="alertDetails"></app-alert>
+                    

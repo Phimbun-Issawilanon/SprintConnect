@@ -119,14 +119,6 @@ $color-green: #398683;
 }
 
 
-.btn-primary-icon {
-  background-color: $color-primary;
-  color: white;
-}
-.btn-primary-icon:hover {
-  background-color: $color-primary-hover;
-  color: white;
-}
 
 .btn-outline-primary {
   background: white;
@@ -175,9 +167,14 @@ $color-green: #398683;
   opacity: 0.5;
 }
 
+.form-check-input:focus,.form-check-input:not(:disabled):active{
+  outline: none;
+  box-shadow: none;
+}
 .form-check-input {
   width: 18px;
   height: 18px;
+  border-color: D8D6DE;
 }
 .form-check-input:checked {
   background-color: $color-primary;
